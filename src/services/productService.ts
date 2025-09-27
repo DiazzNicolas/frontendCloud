@@ -1,6 +1,6 @@
 import { Producto, ProductoUpdate } from '../types/product.types';
 
-const API_BASE_URL = 'http://18.232.149.60:8000';
+const API_BASE_URL = 'https://d5a92f4425ab.ngrok-free.app';
 
 export const productService = {
   // Obtener todos los productos

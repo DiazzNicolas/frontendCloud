@@ -38,9 +38,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </button>
           </div>
         </div>
-        
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">{producto.descripcion}</p>
-        
+    
         <div className="flex justify-between items-center">
           <div className="text-2xl font-bold text-indigo-600">
             {formatPrice(producto.precio)}

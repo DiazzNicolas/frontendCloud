@@ -16,7 +16,6 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 }) => {
   const [formData, setFormData] = useState<ProductFormData>({
     nombre: '',
-    descripcion: '',
     precio: 0,
     stock: 0
   });
@@ -29,7 +28,6 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     } else {
       setFormData({
         nombre: '',
-        descripcion: '',
         precio: 0,
         stock: 0
       });
@@ -85,20 +83,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             />
           </div>
-          
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
-            <textarea
-              name="descripcion"
-              value={formData.descripcion}
-              onChange={handleInputChange}
-              required
-              maxLength={300}
-              rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
-            />
-          </div>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Precio (S/)</label>
