@@ -21,7 +21,10 @@ const getHeaders = () => ({
 export const productService = {
   // Obtener todos los productos
   async getAll(): Promise<Producto[]> {
-    const response = await fetch(`${API_BASE_URL}/productos`, {
+    const fullURL = 'https://f8dae8ef47c5.ngrok-free.app/productos';
+    console.log('Intentando fetch a:', fullURL);
+    
+    const response = await fetch(fullURL, {
       headers: getHeaders()
     });
     if (!response.ok) throw new Error('Error al cargar productos');
@@ -30,7 +33,10 @@ export const productService = {
 
   // Crear producto
   async create(producto: Omit<Producto, '_id'>): Promise<Producto> {
-    const response = await fetch(`${API_BASE_URL}/productos`, {
+    const fullURL = 'https://f8dae8ef47c5.ngrok-free.app/productos';
+    console.log('Intentando POST a:', fullURL);
+    
+    const response = await fetch(fullURL, {
       method: 'POST',
       headers: getHeaders(),
       body: JSON.stringify(producto)
@@ -41,7 +47,10 @@ export const productService = {
 
   // Actualizar producto
   async update(id: string, updateData: ProductoUpdate): Promise<Producto> {
-    const response = await fetch(`${API_BASE_URL}/productos/${id}`, {
+    const fullURL = `https://f8dae8ef47c5.ngrok-free.app/productos/${id}`;
+    console.log('Intentando PUT a:', fullURL);
+    
+    const response = await fetch(fullURL, {
       method: 'PUT',
       headers: getHeaders(),
       body: JSON.stringify(updateData)
@@ -52,7 +61,10 @@ export const productService = {
 
   // Eliminar producto
   async delete(id: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/productos/${id}`, {
+    const fullURL = `https://f8dae8ef47c5.ngrok-free.app/productos/${id}`;
+    console.log('Intentando DELETE a:', fullURL);
+    
+    const response = await fetch(fullURL, {
       method: 'DELETE',
       headers: getHeaders()
     });
@@ -61,7 +73,10 @@ export const productService = {
 
   // Generar URL presignada para subir imágenes
   async generatePresignedUrl(fileName: string): Promise<{uploadUrl: string, publicUrl: string}> {
-    const response = await fetch(`${API_BASE_URL}/productos/generate-presigned-url?file_name=${fileName}`, {
+    const fullURL = `https://f8dae8ef47c5.ngrok-free.app/productos/generate-presigned-url?file_name=${fileName}`;
+    console.log('Intentando presigned URL a:', fullURL);
+    
+    const response = await fetch(fullURL, {
       headers: getHeaders()
     });
     if (!response.ok) throw new Error('Error al generar URL presignada');
