@@ -1,10 +1,16 @@
 import { Producto, ProductoUpdate } from '../types/product.types';
 
-// Usar variable de entorno o fallback
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://f8dae8ef47c5.ngrok-free.app';
+// Forzar HTTPS - reemplazar http con https si existe
+let API_BASE_URL = 'https://f8dae8ef47c5.ngrok-free.app';
+
+// Seguridad extra: convertir cualquier HTTP a HTTPS
+if (API_BASE_URL.startsWith('http://')) {
+  API_BASE_URL = API_BASE_URL.replace('http://', 'https://');
+}
 
 // Debug: verificar qué URL se está usando
-console.log('API_BASE_URL:', API_BASE_URL); // Ya está en HTTPS, perfecto
+console.log('API_BASE_URL:', API_BASE_URL);
+console.log('Tipo de protocolo:', API_BASE_URL.startsWith('https') ? 'HTTPS ✓' : 'HTTP ✗'); // Ya está en HTTPS, perfecto
 
 // Headers comunes para ngrok
 const getHeaders = () => ({
