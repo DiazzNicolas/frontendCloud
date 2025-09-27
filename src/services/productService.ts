@@ -1,14 +1,18 @@
 import { Producto, ProductoUpdate } from '../types/product.types';
 
-const API_BASE_URL = 'https://d5a92f4425ab.ngrok-free.app'; // Ajusta según tu configuración
+const API_BASE_URL = 'https://d5a92f4425ab.ngrok-free.app';
+
+// Headers comunes para ngrok
+const getHeaders = () => ({
+  'Content-Type': 'application/json',
+  'ngrok-skip-browser-warning': 'true' // Este header es clave para ngrok
+});
 
 export const productService = {
   // Obtener todos los productos
   async getAll(): Promise<Producto[]> {
     const response = await fetch(`${API_BASE_URL}/productos`, {
-      headers: {
-        'Content-Type': 'application/json',
-      }
+      headers: getHeaders()
     });
     if (!response.ok) throw new Error('Error al cargar productos');
     return response.json();
@@ -18,7 +22,7 @@ export const productService = {
   async create(producto: Omit<Producto, '_id'>): Promise<Producto> {
     const response = await fetch(`${API_BASE_URL}/productos`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify(producto)
     });
     if (!response.ok) throw new Error('Error al crear producto');
@@ -29,7 +33,7 @@ export const productService = {
   async update(id: string, updateData: ProductoUpdate): Promise<Producto> {
     const response = await fetch(`${API_BASE_URL}/productos/${id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify(updateData)
     });
     if (!response.ok) throw new Error('Error al actualizar producto');
@@ -39,7 +43,8 @@ export const productService = {
   // Eliminar producto
   async delete(id: string): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/productos/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: getHeaders()
     });
     if (!response.ok) throw new Error('Error al eliminar producto');
   },
@@ -47,9 +52,7 @@ export const productService = {
   // Generar URL presignada para subir imágenes
   async generatePresignedUrl(fileName: string): Promise<{uploadUrl: string, publicUrl: string}> {
     const response = await fetch(`${API_BASE_URL}/productos/generate-presigned-url?file_name=${fileName}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      }
+      headers: getHeaders()
     });
     if (!response.ok) throw new Error('Error al generar URL presignada');
     return response.json();
