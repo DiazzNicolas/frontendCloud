@@ -47,13 +47,13 @@ const App: React.FC = () => {
   // Guardar producto (crear o actualizar)
   const handleSaveProduct = async (formData: Producto, isEditing: boolean) => {
     if (isEditing && editingProduct) {
-      // Crear objeto con solo los campos que cambiaron
       const updateData: ProductoUpdate = {};
       if (formData.nombre !== editingProduct.nombre) updateData.nombre = formData.nombre;
       if (formData.precio !== editingProduct.precio) updateData.precio = formData.precio;
       if (formData.stock !== editingProduct.stock) updateData.stock = formData.stock;
+      if (formData.imageUrl !== editingProduct.imageUrl) updateData.imageUrl = formData.imageUrl;
       
-      await updateProduct(editingProduct.id!, updateData);
+      await updateProduct(editingProduct._id!, updateData); // Cambiar de id a _id
     } else {
       await createProduct(formData);
     }

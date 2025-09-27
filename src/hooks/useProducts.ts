@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Producto } from '../types/product.types';
+import { Producto, ProductoUpdate } from '../types/product.types';
 import { productService } from '../services/productService';
 
 export const useProducts = () => {
@@ -21,7 +21,7 @@ export const useProducts = () => {
     }
   };
 
-  const createProduct = async (producto: Producto) => {
+  const createProduct = async (producto: Omit<Producto, '_id'>) => {
     try {
       await productService.create(producto);
       await fetchProductos();
@@ -31,7 +31,7 @@ export const useProducts = () => {
     }
   };
 
-  const updateProduct = async (id: string, updateData: any) => {
+  const updateProduct = async (id: string, updateData: ProductoUpdate) => {
     try {
       await productService.update(id, updateData);
       await fetchProductos();
