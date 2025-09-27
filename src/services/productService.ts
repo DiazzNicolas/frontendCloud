@@ -1,6 +1,6 @@
 import { Producto, ProductoUpdate } from '../types/product.types';
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'http://54.146.162.192:8082';
 
 export const productService = {
   // Obtener todos los productos
