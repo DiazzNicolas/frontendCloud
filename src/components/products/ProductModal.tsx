@@ -40,14 +40,21 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     const { name, value, type } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'number' ? parseFloat(value) || 0 : value
+      [name]: type === 'number' ? (value === '' ? '' : Number(value)) : value
     }));
   };
 
   const handleSave = async () => {
+    // Convertir campos vacíos a 0 antes de guardar
+    const dataToSave = {
+      ...formData,
+      precio: formData.precio === '' ? 0 : Number(formData.precio),
+      stock: formData.stock === '' ? 0 : Number(formData.stock)
+    };
+
     try {
       setSaving(true);
-      await onSave(formData, !!editingProduct);
+      await onSave(dataToSave, !!editingProduct);
       onClose();
     } catch (err) {
       alert('Error al guardar el producto');
