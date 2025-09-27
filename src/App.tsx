@@ -29,8 +29,7 @@ const App: React.FC = () => {
   // Filtrar productos por término de búsqueda
   const filteredProductos = useMemo(() => 
     productos.filter(producto =>
-      producto.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      producto.descripcion.toLowerCase().includes(searchTerm.toLowerCase())
+      producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
     ), [productos, searchTerm]);
 
   // Abrir modal para crear/editar
@@ -51,7 +50,6 @@ const App: React.FC = () => {
       // Crear objeto con solo los campos que cambiaron
       const updateData: ProductoUpdate = {};
       if (formData.nombre !== editingProduct.nombre) updateData.nombre = formData.nombre;
-      if (formData.descripcion !== editingProduct.descripcion) updateData.descripcion = formData.descripcion;
       if (formData.precio !== editingProduct.precio) updateData.precio = formData.precio;
       if (formData.stock !== editingProduct.stock) updateData.stock = formData.stock;
       
