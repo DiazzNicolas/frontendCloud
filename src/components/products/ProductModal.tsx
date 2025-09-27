@@ -45,13 +45,11 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   };
 
   const handleSave = async () => {
-    // Convertir campos vacíos a 0 antes de guardar
     const dataToSave = {
       ...formData,
-      precio: formData.precio === '' ? 0 : Number(formData.precio),
-      stock: formData.stock === '' ? 0 : Number(formData.stock)
+      precio: isNaN(formData.precio) || formData.precio === 0 ? 0 : formData.precio,
+      stock: isNaN(formData.stock) || formData.stock === 0 ? 0 : formData.stock
     };
-
     try {
       setSaving(true);
       await onSave(dataToSave, !!editingProduct);
