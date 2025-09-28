@@ -1,7 +1,7 @@
 import { Producto, ProductoUpdate } from '../types/product.types';
 
 // Forzar HTTPS - reemplazar http con https si existe
-let API_BASE_URL = 'https://f8dae8ef47c5.ngrok-free.app';
+let API_BASE_URL = 'https://adcee72806dc.ngrok-free.app';
 
 // Seguridad extra: convertir cualquier HTTP a HTTPS
 if (API_BASE_URL.startsWith('http://')) {
