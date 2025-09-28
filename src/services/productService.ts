@@ -1,5 +1,5 @@
 import { Producto, ProductoUpdate } from '../types/product.types';
-
+//Expuesto x ahora x errores de conexion
 // Forzar HTTPS - reemplazar http con https si existe
 let API_BASE_URL = 'https://adcee72806dc.ngrok-free.app';
 
@@ -21,7 +21,7 @@ const getHeaders = () => ({
 export const productService = {
   // Obtener todos los productos
   async getAll(): Promise<Producto[]> {
-    const fullURL = 'https://f8dae8ef47c5.ngrok-free.app/productos';
+    const fullURL = 'https://adcee72806dc.ngrok-free.app/productos';
     console.log('Intentando fetch a:', fullURL);
     
     const response = await fetch(fullURL, {
@@ -33,7 +33,7 @@ export const productService = {
 
   // Crear producto
   async create(producto: Omit<Producto, '_id'>): Promise<Producto> {
-    const fullURL = 'https://f8dae8ef47c5.ngrok-free.app/productos';
+    const fullURL = 'https://adcee72806dc.ngrok-free.app/productos';
     console.log('Intentando POST a:', fullURL);
     
     const response = await fetch(fullURL, {
@@ -47,7 +47,7 @@ export const productService = {
 
   // Actualizar producto
   async update(id: string, updateData: ProductoUpdate): Promise<Producto> {
-    const fullURL = `https://f8dae8ef47c5.ngrok-free.app/productos/${id}`;
+    const fullURL = `https://adcee72806dc.ngrok-free.app/productos/${id}`;
     console.log('Intentando PUT a:', fullURL);
     
     const response = await fetch(fullURL, {
@@ -61,7 +61,7 @@ export const productService = {
 
   // Eliminar producto
   async delete(id: string): Promise<void> {
-    const fullURL = `https://f8dae8ef47c5.ngrok-free.app/productos/${id}`;
+    const fullURL = `https://adcee72806dc.ngrok-free.app/productos/${id}`;
     console.log('Intentando DELETE a:', fullURL);
     
     const response = await fetch(fullURL, {
@@ -73,7 +73,7 @@ export const productService = {
 
   // Generar URL presignada para subir imágenes
   async generatePresignedUrl(fileName: string): Promise<{uploadUrl: string, publicUrl: string}> {
-    const fullURL = `https://f8dae8ef47c5.ngrok-free.app/productos/generate-presigned-url?file_name=${fileName}`;
+    const fullURL = `https://adcee72806dc.ngrok-free.app/productos/generate-presigned-url?file_name=${fileName}`;
     console.log('Intentando presigned URL a:', fullURL);
     
     const response = await fetch(fullURL, {
